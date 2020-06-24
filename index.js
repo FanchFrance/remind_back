@@ -11,9 +11,9 @@ app.use(cors());
 app.use("/api", api);
 
 // test connexion
-app.get('/', (request, response) =>{
-    response.send('connection made');
-})
+app.get("/", (request, response) => {
+  response.send("connection made");
+});
 
 app.listen(port, (err) => {
   if (err) {
