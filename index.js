@@ -1,14 +1,18 @@
 const express = require("express");
-const apiRouter = require("./routes");
-const port = 8000;
-
 const app = express();
+const api = require("./routes");
+const port = process.env.PORT || 3000;
+const cors = require("cors");
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/api", apiRouter);
+app.use("/api", api);
 
 app.listen(port, (err) => {
-  console.log("server is running, listening on port");
+  if (err) {
+    throw new Error("There is an error");
+  }
+  console.log(`Port ${port}`);
 });
