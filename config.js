@@ -9,7 +9,10 @@ var pool = mysql.createPool({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
 });
-module.exports = {
+
+module.exports = pool;
+
+/* module.exports = {
   query: function () {
     var sql_args = [];
     var args = [];
@@ -35,4 +38,4 @@ module.exports = {
       });
     });
   },
-};
+}; */
