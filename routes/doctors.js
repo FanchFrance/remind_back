@@ -13,6 +13,40 @@ router.get("/", (req, res) => {
   });
 });
 
+//Retrieve all patients from one doctor
+router.get("/:id/patients", (req, res) => {
+  const idParams = req.params.id;
+
+  connection.query(
+    "SELECT * FROM doctor JOIN patient ON doctor.id = patient.doctor_id WHERE doctor.id = ?",
+    [idParams],
+    (err, result) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(200).json(result);
+      }
+    }
+  );
+});
+
+//Retrieve a doctor
+router.get("/:id", (req, res) => {
+  const idParams = req.params.id;
+
+  connection.query(
+    "SELECT * FROM doctor WHERE id = ?",
+    [idParams],
+    (err, result) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(200).json(result);
+      }
+    }
+  );
+});
+
 //Create a doctor
 router.post("/", (req, res) => {
   const formData = req.body;
